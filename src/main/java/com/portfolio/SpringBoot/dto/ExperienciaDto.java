@@ -6,22 +6,44 @@ public class ExperienciaDto {
     
     @NotBlank
     private String nombreExp;
-    @NotBlank
+    @NotBlank    
+   private String duracionExp;
+    @NotBlank 
     private String descripcionExp;
+     @NotBlank 
+     private String imageExp;
 
     public ExperienciaDto() {
     }
     
-    public ExperienciaDto(String nombreExp, String descripcionExp) {
+    public ExperienciaDto(String nombreExp, String duracionExp, String descripcionExp, String imageExp) {
         this.nombreExp = nombreExp;
+        this.duracionExp = duracionExp;
         this.descripcionExp = descripcionExp;
+       this.imageExp = imageExp;
+    }
+
+    public String getDuracionExp() {
+        return duracionExp;
+    }
+
+    public void setDuracionExp(String duracionExp) {
+        this.duracionExp = duracionExp;
+    }
+
+    public String getImageExp() {
+        return imageExp;
+    }
+
+    public void setImageExp(String imageExp) {
+        this.imageExp = imageExp;
     }
 
     public String getNombreExp() {
         return nombreExp;
     }
 
-    public void setNombreExp(String nombreEdu) {
+    public void setNombreExp(String nombreExp) {
         this.nombreExp = nombreExp;
     }
 

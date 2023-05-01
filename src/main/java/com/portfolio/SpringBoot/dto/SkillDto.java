@@ -1,9 +1,9 @@
 package com.portfolio.SpringBoot.dto;
 
 public class SkillDto {
-    
     private String skill;
     private int percentage;
+    
     
     public SkillDto() {
     }

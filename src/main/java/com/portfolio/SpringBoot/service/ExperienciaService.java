@@ -23,8 +23,8 @@ public class ExperienciaService {
         return experienciaRepo.findById(id);
     }
     
-    public Optional<Experiencia> getByNombreExp(String puesto) {
-        return experienciaRepo.findByNombreExp(puesto);
+    public Optional<Experiencia> getByNombreExp(String nombreExp) {
+        return experienciaRepo.findByNombreExp(nombreExp);
     }
     
     public void save(Experiencia expe) {
@@ -39,4 +39,7 @@ public class ExperienciaService {
         return experienciaRepo.existsById(id);
     }
 
+    public boolean existsByNombreExp(String nombreExp) {
+        return experienciaRepo.existsByNombreExp(nombreExp);
+    }
 }

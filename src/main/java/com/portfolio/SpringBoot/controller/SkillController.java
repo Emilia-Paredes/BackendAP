@@ -23,7 +23,7 @@ public class SkillController {
     @Autowired
     private SkillService skillService;
 
-    @GetMapping("/lista")
+    @GetMapping("/listaSkill")
     public ResponseEntity<List<Skill>> list() {
         List<Skill> list = skillService.list();
         return new ResponseEntity(list, HttpStatus.OK);

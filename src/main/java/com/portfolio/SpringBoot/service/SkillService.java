@@ -24,7 +24,7 @@ public class SkillService {
     }
     
     public Optional<Skill> getByNombre(String skill){
-        return skillRepo.findByNombreSkill(skill);
+        return skillRepo.findBySkill(skill);
     }
     
     public void save(Skill skill){
@@ -40,6 +40,6 @@ public class SkillService {
     }
     
     public boolean existsByNombre(String nombre){
-        return skillRepo.existsByNombrekill(nombre);
+        return skillRepo.existsBySkill(nombre);
     }
 }

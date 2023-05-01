@@ -66,6 +66,9 @@ public class EducacionController {
         
         educacion.setNombreEdu(educacionDto.getNombreEdu());
         educacion.setDescripcionEdu(educacionDto.getDescripcionEdu());
+        educacion.setDuracionEdu(educacionDto.getDuracionEdu());
+        educacion.setInstitucion(educacionDto.getInstitucion());
+        educacion.setImageEdu(educacionDto.getImageEdu());
         
         educacionService.save(educacion);
         

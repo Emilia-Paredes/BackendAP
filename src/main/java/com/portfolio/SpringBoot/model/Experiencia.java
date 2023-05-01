@@ -15,7 +15,6 @@ public class Experiencia implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id; 
-    private String puesto;
     private String nombreExp;
     private String duracionExp;
     private String descripcionExp;
@@ -25,8 +24,7 @@ public class Experiencia implements Serializable{
     public Experiencia() {
     }
 
-    public Experiencia(String puesto, String nombreExp, String duracionExp, String descripcionExp, String imageExp) {
-        this.puesto = puesto;
+    public Experiencia(String nombreExp, String duracionExp, String descripcionExp, String imageExp) {
         this.nombreExp = nombreExp;
         this.duracionExp = duracionExp;
         this.descripcionExp = descripcionExp;
