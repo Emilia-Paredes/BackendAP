@@ -35,7 +35,7 @@ public class ExperienciaController {
         Experiencia experiencia = new Experiencia(expDto.getNombreExp(), expDto.getDescripcionExp(), expDto.getDuracionExp(), expDto.getImageExp());
         experienciaService.save(experiencia);
         
-        return new ResponseEntity(new Mensaje("Experienca cargada"), HttpStatus.OK);
+        return new ResponseEntity(new Mensaje("Experiencia cargada"), HttpStatus.OK);
     }
     
     @PutMapping("/editar/{id}")

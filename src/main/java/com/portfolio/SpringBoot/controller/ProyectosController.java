@@ -8,11 +8,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@RestController
+@RequestMapping("/proyectos")
+@CrossOrigin(origins = "http://localhost:4200")
+
 public class ProyectosController {
      @Autowired
     ProyectosService proyectosService;
 
-    @GetMapping("/all")
+    @GetMapping("/lista")
     public ResponseEntity<List<Proyectos>> findAllProyectos() {
         List<Proyectos> proyectos = proyectosService.findAllProyectos();
         return new ResponseEntity<>(proyectos, HttpStatus.OK);
