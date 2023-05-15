@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 @Transactional
 public class EducacionService {
+    
     @Autowired
     public EducacionRepository educacionRepo;
     

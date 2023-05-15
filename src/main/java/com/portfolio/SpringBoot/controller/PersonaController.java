@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
+/*import org.springframework.security.access.prepost.PreAuthorize;*/
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -23,39 +23,32 @@ public class PersonaController {
         return new ResponseEntity(persona, HttpStatus.OK);
     }
     
-    @GetMapping("/ver")
+    @GetMapping("/lista")
     public  ResponseEntity<List<Persona>> verPersonas() {
         List<Persona> personas = personaService.verPersonas();
         return new ResponseEntity(personas, HttpStatus.OK);
     }
     
-    @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/new") 
+   /* @PreAuthorize("hasRole('ADMIN')")*/
+    @PostMapping("/crear") 
         public String agregarPersona(@RequestBody Persona persona) {
             personaService.crearPersona(persona);
             return "La persona fue creada correctamente.";
     }
         
-    @PreAuthorize("hasRole('ADMIN')")    
-    @DeleteMapping("/borrar/{id}")
+    /*@PreAuthorize("hasRole('ADMIN')")*/
+    @DeleteMapping("/eliminar/{id}")
     public String deletePersona(@PathVariable Long id) {
         personaService.borrarPersona(id);
         return "La persona fue eliminada correctamente.";
     }
-
     
-    
-    /*@DeleteMapping("/delete/{id}")
-    public void borrarPersona(@PathVariable Long id) {
-        personaService.borrarPersona(id);
-    }*/
-    @PreAuthorize("hasRole('ADMIN')")
+    /*@PreAuthorize("hasRole('ADMIN')")*/
     @PutMapping("/editar/{id}")
     public Persona editPersona(@PathVariable Long id,
                                                                @RequestParam("nombre") String nuevoNombre,                                                               
                                                                @RequestParam("apellido") String nuevoApellido,                                                               
                                                                @RequestParam("ocupacion") String nuevoOcupacion,
-                                                               @RequestParam("email") String nuevoEmail,
                                                                @RequestParam("sobremi") String nuevoSobremi,
                                                                @RequestParam("url_imagen") String nuevoImg) {
            Persona persona = personaService.buscarPersona(id);
@@ -63,7 +56,6 @@ public class PersonaController {
            persona.setNombre(nuevoNombre);
            persona.setApellido(nuevoApellido);
            persona.setOcupacion(nuevoOcupacion);      
-           persona.setEmail(nuevoEmail);
            persona.setSobremi(nuevoSobremi);
            persona.setUrl_imagen(nuevoImg);
            

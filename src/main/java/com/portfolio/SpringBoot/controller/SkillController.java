@@ -29,7 +29,7 @@ public class SkillController {
         return new ResponseEntity(list, HttpStatus.OK);
     }
 
-    @GetMapping("/detail/{id}")
+    @GetMapping("/buscar/{id}")
     public ResponseEntity<Skill> getById(@PathVariable("id") int id) {
         if (!skillService.existsById(id)) {
             return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
@@ -38,7 +38,7 @@ public class SkillController {
         return new ResponseEntity(skills, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
         if (!skillService.existsById(id)) {
             return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
@@ -47,13 +47,10 @@ public class SkillController {
         return new ResponseEntity(new Mensaje("Skill eliminado"), HttpStatus.OK);
     }
 
-    @PostMapping("/create")
+    @PostMapping("/crear")
     public ResponseEntity<?> create(@RequestBody SkillDto skillsDto) {
         if (StringUtils.isBlank(skillsDto.getSkill())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
-        }
-        if (skillService.existsByNombre(skillsDto.getSkill())) {
-            return new ResponseEntity(new Mensaje("Esa skill ya existe"), HttpStatus.BAD_REQUEST);
         }
 
         Skill hYs = new Skill(skillsDto.getSkill(), skillsDto.getPercentage());
@@ -62,7 +59,7 @@ public class SkillController {
         return new ResponseEntity(new Mensaje("Skill agregada"), HttpStatus.OK);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/editar/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody SkillDto skillsDto) {
         //Validamos si existe el ID
         if (!skillService.existsById(id)) {

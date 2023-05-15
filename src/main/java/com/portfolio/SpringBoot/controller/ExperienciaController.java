@@ -29,9 +29,7 @@ public class ExperienciaController {
     public ResponseEntity<?> create(@RequestBody ExperienciaDto expDto) {
         if (StringUtils.isBlank(expDto.getNombreExp())) 
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
-        if (experienciaService.existsByNombreExp(expDto.getNombreExp()))
-            return new ResponseEntity(new Mensaje("Esa experiencia existe"), HttpStatus.BAD_REQUEST);
-           
+              
         Experiencia experiencia = new Experiencia(expDto.getNombreExp(), expDto.getDescripcionExp(), expDto.getDuracionExp(), expDto.getImageExp());
         experienciaService.save(experiencia);
         

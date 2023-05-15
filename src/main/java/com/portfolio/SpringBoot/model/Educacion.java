@@ -31,6 +31,4 @@ public class Educacion implements Serializable {
         this.descripcionEdu = descripcionEdu;
         this.imageEdu = imageEdu;
     }
-    
-    
 }

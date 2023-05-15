@@ -21,7 +21,6 @@ public class Persona implements Serializable {
     private String nombre;
     private String apellido;
     private String ocupacion;
-    private String email;
     private String sobremi;
     private String url_imagen;
 
@@ -29,12 +28,11 @@ public class Persona implements Serializable {
     public Persona() {
     }
 
-    public Persona(String nombre, String apellido, String ocupacion, String email, String sobremi, String url_imagen) {
+    public Persona(String nombre, String apellido, String ocupacion, String sobremi, String url_imagen) {
         //this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.ocupacion = ocupacion;
-        this.email = email;
         this.sobremi = sobremi;
         this.url_imagen = url_imagen;
     }

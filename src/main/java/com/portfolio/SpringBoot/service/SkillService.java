@@ -39,7 +39,7 @@ public class SkillService {
         return skillRepo.existsById(id);
     }
     
-    public boolean existsByNombre(String nombre){
-        return skillRepo.existsBySkill(nombre);
+    public boolean existsByNombre(String nombreSkill){
+        return skillRepo.existsBySkill(nombreSkill);
     }
 }

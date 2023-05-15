@@ -10,7 +10,6 @@ import lombok.Setter;
 
 @Getter @Setter
 @Entity  
-
 public class Proyectos implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
