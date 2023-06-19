@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/skill")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {"https://porfolio-aep.web.app", "http://localhost:4200"})
 
 public class SkillController {
 
