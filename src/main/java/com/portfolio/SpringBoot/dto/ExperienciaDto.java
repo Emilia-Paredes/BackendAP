@@ -6,11 +6,8 @@ public class ExperienciaDto {
     
     @NotBlank
     private String nombreExp;
-    @NotBlank    
    private String duracionExp;
-    @NotBlank 
     private String descripcionExp;
-     @NotBlank 
      private String imageExp;
 
     public ExperienciaDto() {

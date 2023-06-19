@@ -39,7 +39,7 @@ public class ExperienciaController {
     @PutMapping("/editar/{id}")
     public ResponseEntity<?> update (@PathVariable("id") int id, @RequestBody ExperienciaDto expDto) {
         if(!experienciaService.existsById(id))
-            return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.NOT_FOUND);
         if(experienciaService.existsByNombreExp(expDto.getNombreExp()) && experienciaService.getByNombreExp(expDto.getNombreExp()).get().getId() != id)
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         
@@ -55,11 +55,10 @@ public class ExperienciaController {
     
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
-        if(!experienciaService.existsById(id))
+        if(!experienciaService.existsById(id)) {
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
-        
+        }
         experienciaService.delete(id);
-        
         return new ResponseEntity(new Mensaje("Experiencia eliminada"), HttpStatus.OK);
     }
     

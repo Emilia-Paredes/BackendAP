@@ -1,6 +1,10 @@
 package com.portfolio.SpringBoot.dto;
 
+import javax.validation.constraints.NotBlank;
+
 public class SkillDto {
+    
+    @NotBlank
     private String skill;
     private int percentage;
     

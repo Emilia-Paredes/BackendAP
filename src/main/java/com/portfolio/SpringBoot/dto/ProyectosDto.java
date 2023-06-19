@@ -1,6 +1,10 @@
 package com.portfolio.SpringBoot.dto;
 
+import javax.validation.constraints.NotBlank;
+
 public class ProyectosDto {
+    
+    @NotBlank
     private String nombreProy;
     private String descripcionProy;
     private String imageProy;

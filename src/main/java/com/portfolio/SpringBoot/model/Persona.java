@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,11 +14,9 @@ import lombok.Setter;
 public class Persona implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @NotNull
-     @Size( min=1, max=25, message="Nocumple con la longitud" )
-    private String nombre;
+    private int id;
     private String apellido;
+    private String nombre;
     private String ocupacion;
     private String sobremi;
     private String url_imagen;
@@ -28,10 +25,9 @@ public class Persona implements Serializable {
     public Persona() {
     }
 
-    public Persona(String nombre, String apellido, String ocupacion, String sobremi, String url_imagen) {
-        //this.id = id;
-        this.nombre = nombre;
+    public Persona(String apellido, String nombre, String ocupacion, String sobremi, String url_imagen) {
         this.apellido = apellido;
+        this.nombre = nombre;
         this.ocupacion = ocupacion;
         this.sobremi = sobremi;
         this.url_imagen = url_imagen;

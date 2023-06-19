@@ -25,17 +25,6 @@ public class ProyectosController {
         return new ResponseEntity<>(proyectos, HttpStatus.OK);
     }
 
-    @GetMapping("/buscar/{id}")
-    public ResponseEntity<Proyectos> getById(@PathVariable("id") int id) {
-        if (!proyectosService.existsById(id)) {
-            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
-        }
-        
-        Proyectos proyecto = proyectosService.getOne(id).get();
-        return new ResponseEntity<>(proyecto, HttpStatus.OK);
-    }
-
-    /* @PreAuthorize("hasRole('ADMIN')")*/
     @PostMapping("/crear")
     public ResponseEntity<?> addProyecto (@RequestBody ProyectosDto proyectoDto) {
         if(StringUtils.isBlank(proyectoDto.getNombreProy())) {
@@ -46,15 +35,14 @@ public class ProyectosController {
         proyectosService.save(proyecto);
         return new ResponseEntity(new Mensaje("Proyecto creada"), HttpStatus.OK);
     }
-
-    /* @PreAuthorize("hasRole('ADMIN')")*/
+    
     @PutMapping("/editar/{id}")
     public ResponseEntity<?> updateProyectos (@PathVariable("id") int id, @RequestBody ProyectosDto proyectoDto) {
         if(!proyectosService.existsById(id)) {
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.NOT_FOUND);
         }
         if(StringUtils.isBlank(proyectoDto.getNombreProy())){
-            return new ResponseEntity(new Mensaje("El campo no puede estar vacio"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
         Proyectos proyecto = proyectosService.getOne(id).get();
         proyecto.setNombreProy(proyectoDto.getNombreProy());
@@ -65,10 +53,12 @@ public class ProyectosController {
         return new ResponseEntity(new Mensaje("Proyecto actualizado"), HttpStatus.OK);
     }
 
-    /* @PreAuthorize("hasRole('ADMIN')")*/
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<?> deleteProyecto (@PathVariable("id") int id) {
+        if(!proyectosService.existsById(id)  ) {
+            return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
+        }
         proyectosService.delete(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(new Mensaje(" Proyecto eliminada"), HttpStatus.OK);
     }
 }

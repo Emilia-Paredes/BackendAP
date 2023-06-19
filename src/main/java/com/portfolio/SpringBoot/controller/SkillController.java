@@ -29,24 +29,6 @@ public class SkillController {
         return new ResponseEntity(list, HttpStatus.OK);
     }
 
-    @GetMapping("/buscar/{id}")
-    public ResponseEntity<Skill> getById(@PathVariable("id") int id) {
-        if (!skillService.existsById(id)) {
-            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
-        }
-        Skill skills = skillService.getOne(id).get();
-        return new ResponseEntity(skills, HttpStatus.OK);
-    }
-
-    @DeleteMapping("/eliminar/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") int id) {
-        if (!skillService.existsById(id)) {
-            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
-        }
-        skillService.delete(id);
-        return new ResponseEntity(new Mensaje("Skill eliminado"), HttpStatus.OK);
-    }
-
     @PostMapping("/crear")
     public ResponseEntity<?> create(@RequestBody SkillDto skillsDto) {
         if (StringUtils.isBlank(skillsDto.getSkill())) {
@@ -62,18 +44,16 @@ public class SkillController {
     @PutMapping("/editar/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody SkillDto skillsDto) {
         //Validamos si existe el ID
-        if (!skillService.existsById(id)) {
-            return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
-        }
+        if (!skillService.existsById(id)) 
+            return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.NOT_FOUND);
         //Compara nombre de skills
         if (skillService.existsByNombre(skillsDto.getSkill()) && skillService.getByNombre(skillsDto.getSkill()).get()
                 .getId() != id) {
             return new ResponseEntity(new Mensaje("Esa skill ya existe"), HttpStatus.BAD_REQUEST);
         }
         //No puede estar vacio
-        if (StringUtils.isBlank(skillsDto.getSkill())) {
+        if (StringUtils.isBlank(skillsDto.getSkill())) 
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
-        }
 
         Skill skills = skillService.getOne(id).get();
         skills.setSkill(skillsDto.getSkill());
@@ -81,6 +61,15 @@ public class SkillController {
 
         skillService.save(skills);
         return new ResponseEntity(new Mensaje("Skill actualizada"), HttpStatus.OK);
-
     }
+
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<?> delete(@PathVariable("id") int id) {
+        if (!skillService.existsById(id)) {
+            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
+        }
+        skillService.delete(id);
+        return new ResponseEntity(new Mensaje("Skill eliminado"), HttpStatus.OK);
+    }
+
 }

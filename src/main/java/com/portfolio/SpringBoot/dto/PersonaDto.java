@@ -1,9 +1,12 @@
 package com.portfolio.SpringBoot.dto;
 
+import javax.validation.constraints.NotBlank;
+
 public class PersonaDto {
 
-    private String nombre;
+    @NotBlank
     private String apellido;
+    private String nombre;
     private String ocupacion;
     private String sobremi;
     private String url_imagen;
@@ -11,20 +14,12 @@ public class PersonaDto {
     public PersonaDto() {
     }
 
-    public PersonaDto(String nombre, String apellido, String ocupacion, String sobremi, String url_imagen) {
-        this.nombre = nombre;
+    public PersonaDto(String apellido, String nombre, String ocupacion, String sobremi, String url_imagen) {
         this.apellido = apellido;
+        this.nombre = nombre;
         this.ocupacion = ocupacion;
         this.sobremi = sobremi;
         this.url_imagen = url_imagen;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public String getApellido() {
@@ -33,6 +28,14 @@ public class PersonaDto {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getOcupacion() {
@@ -55,7 +58,7 @@ public class PersonaDto {
         return url_imagen;
     }
 
-    public void setUrlImagen(String urlImagen) {
+    public void setUrlImagen(String url_imagen) {
         this.url_imagen = url_imagen;
     }
 }
