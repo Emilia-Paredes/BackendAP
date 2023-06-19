@@ -31,7 +31,7 @@ public class PersonaController {
             return new ResponseEntity(new Mensaje("El nombe es obligatorio"), HttpStatus.BAD_REQUEST);
         }
 
-        Persona persona = new Persona(personaDto.getApellido(), personaDto.getNombre(), personaDto.getOcupacion(), personaDto.getSobremi(), personaDto.getUrlImagen());
+        Persona persona = new Persona(personaDto.getApellido(), personaDto.getNombre(), personaDto.getOcupacion(), personaDto.getSobremi(), personaDto.getUrl_imagen());
         personaService.save(persona);
         return new ResponseEntity(new Mensaje("Persona agregada"), HttpStatus.OK);
     }
@@ -50,7 +50,7 @@ public class PersonaController {
         persona.setNombre(personaDto.getNombre());
         persona.setOcupacion(personaDto.getOcupacion());
         persona.setSobremi(personaDto.getSobremi());
-        persona.setUrl_imagen(personaDto.getUrlImagen());
+        persona.setUrl_imagen(personaDto.getUrl_imagen());
 
         personaService.save(persona);
         return new ResponseEntity(new Mensaje("Persona actualizada"), HttpStatus.OK);
